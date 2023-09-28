@@ -1,0 +1,12 @@
+@import 'variables';
+
+/* button */
+.blue-button {
+  background-color: #005CC5;
+  border-radius: 4px;
+  color: $white;
+  font-size: 1rem;
+  min-width: fit-content;
+  text-decoration: none;
+  padding: 10px 20px;
+}

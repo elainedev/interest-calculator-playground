@@ -1,0 +1,51 @@
+@import '../variables';
+ 
+.enrollment {
+  .title {
+    font-size: 1.75rem;
+    font-weight: normal;
+  }
+
+  &-form {
+    background: #F3F3F3;
+    padding: 40px;
+
+    .form-component {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      position: relative;
+
+      label {
+        line-height: 1.5;
+        margin: 10px 0;
+      }
+
+      input, select {
+        font-size: 1rem;
+        height: 40px;
+        width: 100%;
+        padding: 10px;
+      }
+
+      select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url('../assets/chevron-down.svg');
+        background-repeat: no-repeat;
+        background-position: right 0.5em center;
+        background-size: 16px;
+       
+        &::-ms-expand {
+          display: none;
+        }
+      }
+      
+    }
+    .blue-button {
+      display: inline-block;
+      margin-top: 44px;
+    }
+  }
+}

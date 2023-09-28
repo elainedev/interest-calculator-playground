@@ -1,0 +1,16 @@
+@import '../variables';
+
+.contents-container {
+  align-items: center;
+  background-color: lavender;
+  color: $navy-blue;
+  display: flex;
+  flex: 1;
+  height: calc(100vh - $top-navigation-height);
+  justify-content: center;
+  min-width: 350px;
+  padding: 50px;
+  position: relative;
+  text-align: center;
+  top: $top-navigation-height;
+}

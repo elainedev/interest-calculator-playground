@@ -1,0 +1,25 @@
+@import '../variables';
+
+.top-navigation {
+  background-color: $navy-blue;
+  color: $white;
+  padding: 0 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  height: $top-navigation-height;
+}
+
+.menu-items {
+  display: flex;
+
+  .menu-item {
+    font-family: Roboto, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-inline-end: 20px;
+  }
+}
