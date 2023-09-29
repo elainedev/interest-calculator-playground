@@ -13,6 +13,10 @@
 
 - React Hook Form is used to create the deposit form.
 
+- The formula to calculate the compounded interest takes into account that the annual interest rate is 5% for the first 36 months and 2% thereafter. It calculates the total compounded interest based on the frequency of the deposits (1 or 2 times a month), the number of days since enrollment (i.e. when user filled out the enrollment form), and the deposit amount. My process to generate the equation via ChatGPT can be seen [here](https://chat.openai.com/c/ffc3906e-cc5a-47e8-910a-c6b14d530ff3)
+
+![compound interest formula](src/assets/compound-interest-formula.png)
+
 ### Reason for Using React Hook Form and Not Formik 
 React Hook Form has several built-in functionalities and benefits. One benefit is its ability NOT to re-render the form every single time the input changes (e.g. when the user enters just one character), thus reducing loading speed and overhead. 
 

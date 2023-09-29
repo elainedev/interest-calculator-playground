@@ -34,7 +34,7 @@ const Calculator: React.FC = () => {
     const first36MonthsInterest: number = calculateCompoundInterest(
       depositAmount, 
       INTEREST_RATE_1, 
-      elapsedDays, 
+      Math.min(elapsedDays, HIGH_INTEREST_DAYS), 
       frequency 
     );
     let post36MonthsInterest: number = 0;
@@ -60,7 +60,7 @@ const Calculator: React.FC = () => {
       <DatePicker
         dateFormat='dd/MM/yyyy'
         minDate={new Date()}
-        onChange={(date) => setSelectedDate(date)}
+        onChange={(date) => date && setSelectedDate(date)}
         selected={selectedDate}
         inline
       />

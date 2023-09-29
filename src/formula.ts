@@ -5,7 +5,5 @@ export function calculateCompoundInterest (
   interestRate: number, // 0.05, or 5%
   days: number, 
   frequency: number): number {
-    console.log('elapsedDays', days)
-  
     return parseFloat((frequency * depositAmount * (((Math.pow(1 + interestRate / COMPOUNDING_PERIODS, (COMPOUNDING_PERIODS * days) / 365)) - 1) / (interestRate/ COMPOUNDING_PERIODS))).toFixed(2));
 }
