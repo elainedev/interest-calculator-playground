@@ -6,7 +6,17 @@ React Router is used to render the different page contents.
 
 Installed prettier and stylelint for formatting.
 
-Use React Hook Form
+Use React Hook Form to create the enrollment form.
+
+Reason for staying away from MUI:
+MUI provides overcomplicated classnames
+
+
+
+Some things I would do if I had more time:
+- make the page even more responsive by hiding the gray side menu when the viewport shrinks
+- make the top and side navigation work with React Router
+
 
 
 <!-- This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+import { NumericFormat } from 'react-number-format';
 
 import './Enrollment.scss';
 import '../shared-styles.scss';
@@ -8,13 +9,13 @@ import '../shared-styles.scss';
 type FormData = {
   accountNumber: string;
   routingNumber: string;
-  amount: string;
+  depositAmount: string;
   frequency: string;
 }
 
 const Enrollment: React.FC = () => {
 
-  const { register, handleSubmit, formState: {errors}, submit } = useForm<FormData>();
+  const { control, register, handleSubmit, formState: {errors} } = useForm<FormData>();
 
   const navigate = useNavigate();
 
@@ -32,36 +33,77 @@ const Enrollment: React.FC = () => {
       <div className='form-component'>
         <label htmlFor="accountNumber">Account Number:</label>
         <input 
-          id="accountNumber" {...register('accountNumber', {
-          required: 'Account number is required',
-          minLength: {value: 8, message: 'Account Number must be 8 or more digits.'},
-          maxLength: {value: 17, message: 'Account Number must be under 17 digits.'},
+          id="accountNumber"
+          type='number'
+          pattern="[0-9]*"
+          placeholder='12345678'
+          {...register('accountNumber', {
+          required: 'Account number is required.',
+          // minLength: {value: 8, message: 'Account Number must be 8 or more digits.'},
+          // maxLength: {value: 17, message: 'Account Number must be under 17 digits.'},
           pattern: {
             value: /^[0-9]*$/,
             message: 'Account Number must be a number.'
           }
         })} />
-        <p>{errors.accountNumber?.message}</p>
+        <div className='error-message'>{errors.accountNumber?.message}</div>
       </div>
       <div className='form-component'>
         <label htmlFor="routingNumber">Routing Number:</label>
-        <input type="text" id="routingNumber" {...register('routingNumber')} />
+        <input 
+          id="routingNumber"
+          type='number'
+          pattern="[0-9]*"
+          placeholder='123456789'
+          {...register('routingNumber', {
+            required: 'Routing number is required.',
+            // minLength: {value: 9, message: 'Account Number must be 9 digits.'},
+            // maxLength: {value: 9, message: 'Account Number must be 9 digits.'},
+            // pattern: {
+            //   value: /^(00|0[1-9]|1[0-2]|2[1-9]|3[0-2]|6[1-9]|7[0-2]|80)\d{7}$/,
+            //   message: 'Invalid routing number'
+            // }
+          })}
+        />
+        <div className='error-message'>{errors.routingNumber?.message}</div>
       </div>
       <div className='form-component'>
-        <label htmlFor="amount">Amount:</label>
-        <input type="text" id="amount" {...register('amount')} />
+        <label htmlFor="depositAmount">Deposit Amount:</label>
+        <Controller
+          name="depositAmount"
+          control={control}
+          render={({ field: { ref, ...rest } }) => {
+            return(
+            <NumericFormat
+              placeholder='0.00'
+              thousandSeparator=","
+              decimalSeparator="."
+              prefix="$ "
+              decimalScale={2}
+              getInputRef={ref}
+              required
+              {...rest}
+            />
+          )}}
+          rules={{
+            validate: {
+              required: value => !!value || 'Deposit Amount is required.',
+              greaterThanZero: value => parseFloat(value) > 0 || 'Amount must be greater than 0.',
+            }
+          }}
+        />
+        <div className='error-message'>{errors.depositAmount?.message}</div>
+
       </div>
+
       <div className='form-component'>
-        
         <label htmlFor="frequency">Frequency:</label>
         <select id="frequency" {...register('frequency')}>
           <option value="oncePerMonth">Once per month</option>
           <option value="twicePerMonth">Twice per month</option>
         </select>
       </div>
-      <button className='blue-button' type='submit' role='button' onClick={() => console.log(errors)}>
-        Submit
-      </button>
+      <input className='blue-button' type='submit' role='button'/>
     </form>
       
     </div>
