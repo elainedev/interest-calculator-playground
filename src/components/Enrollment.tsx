@@ -10,7 +10,7 @@ type FormData = {
   accountNumber: string;
   routingNumber: string;
   depositAmount: string;
-  frequency: string;
+  frequency: number;
 }
 
 const Enrollment: React.FC = () => {
@@ -20,9 +20,8 @@ const Enrollment: React.FC = () => {
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log('data', data);
-    console.log('e', errors);
-    navigate('calculator');
+
+    navigate('/calculator', {state: {formData: data}});
   }
 
   return (
@@ -88,7 +87,7 @@ const Enrollment: React.FC = () => {
           rules={{
             validate: {
               required: value => !!value || 'Deposit Amount is required.',
-              greaterThanZero: value => parseFloat(value) > 0 || 'Amount must be greater than 0.',
+              greaterThanZero: value => parseFloat(value.slice(2)) > 0 || `Amount must be greater than 0.`,
             }
           }}
         />
@@ -99,8 +98,8 @@ const Enrollment: React.FC = () => {
       <div className='form-component'>
         <label htmlFor="frequency">Frequency:</label>
         <select id="frequency" {...register('frequency')}>
-          <option value="oncePerMonth">Once per month</option>
-          <option value="twicePerMonth">Twice per month</option>
+          <option value={1}>Once per month</option>
+          <option value={2}>Twice per month</option>
         </select>
       </div>
       <input className='blue-button' type='submit' role='button'/>

@@ -1,21 +1,36 @@
 # TypeScript + Vite
 
-This project is set up using vite and TypeScript.
+## Instructions
+1. cd into project directory
+2. run `npm run dev`
 
-React Router is used to render the different page contents.
+## Implementation Notes
+- This project is set up using vite and TypeScript.
 
-Installed prettier and stylelint for formatting.
+- React Router v6.16.0 is used to render the different page contents while keeping the top and side navigation menus the same, for a more SPA experience.
 
-Use React Hook Form to create the enrollment form.
+- prettier and stylelint were installed for formatting.
 
-Reason for staying away from MUI:
-MUI provides overcomplicated classnames
+- React Hook Form is used to create the deposit form.
+
+### Reason for Using React Hook Form and Not Formik 
+React Hook Form has several built-in functionalities and benefits. One benefit is its ability NOT to re-render the form every single time the input changes (e.g. when the user enters just one character), thus reducing loading speed and overhead. 
+
+Unlike Formik, React Hook Form can isolate a component and re-render that component alone, without also rendering other child components along with the form component.
+
+React Hook Form also offers ways to validate the form inputs according to both provided and custom properties. It collects the entire form state into a centralized object that can be passed to other pages.
 
 
+### Reason for Not Using Material UI to Build the Form
+In my opinion, Material UI's major disadvantage is its deeply nested and complicated form structure for form components. Because of this, it can be cumbersome to add even simple custom styling to MUI forms, as the target field can be buried deep inside the form and difficult to locate. Material UI also adds its own lengthy CSS class names to the components, which makes the CSS harder to read and dissect.
 
-Some things I would do if I had more time:
-- make the page even more responsive by hiding the gray side menu when the viewport shrinks
-- make the top and side navigation work with React Router
+
+### Things I would do if I had more time
+- Make the page even more responsive by hiding the gray side menu when the viewport shrinks.
+- Implement React Router with the top and side menu.
+- Add more user instructions on the deposit form.
+- Add a way to navigate back from the Calculator (3rd page) to the Enrollment Form (2nd page).
+- Instead of only displaying the calendar, also display an input field so users can type in the desired date, for easier usability.
 
 
 
