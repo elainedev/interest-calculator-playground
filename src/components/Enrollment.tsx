@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 import './Enrollment.scss';
@@ -14,11 +14,14 @@ type FormData = {
 
 const Enrollment: React.FC = () => {
 
-  const { register, handleSubmit } = useForm<FormData>();
+  const { register, handleSubmit, formState: {errors}, submit } = useForm<FormData>();
+
+  const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data);
-    // Handle form submission logic here
+    console.log('data', data);
+    console.log('e', errors);
+    navigate('calculator');
   }
 
   return (
@@ -28,7 +31,17 @@ const Enrollment: React.FC = () => {
       <form className='enrollment-form' onSubmit={handleSubmit(onSubmit)}>
       <div className='form-component'>
         <label htmlFor="accountNumber">Account Number:</label>
-        <input type="text" id="accountNumber" {...register('accountNumber')} />
+        <input 
+          id="accountNumber" {...register('accountNumber', {
+          required: 'Account number is required',
+          minLength: {value: 8, message: 'Account Number must be 8 or more digits.'},
+          maxLength: {value: 17, message: 'Account Number must be under 17 digits.'},
+          pattern: {
+            value: /^[0-9]*$/,
+            message: 'Account Number must be a number.'
+          }
+        })} />
+        <p>{errors.accountNumber?.message}</p>
       </div>
       <div className='form-component'>
         <label htmlFor="routingNumber">Routing Number:</label>
@@ -46,12 +59,9 @@ const Enrollment: React.FC = () => {
           <option value="twicePerMonth">Twice per month</option>
         </select>
       </div>
-      {/* <button className='blue-button' to='calculator' role='button'>
+      <button className='blue-button' type='submit' role='button' onClick={() => console.log(errors)}>
         Submit
-      </button> */}
-      <Link className='blue-button' to='calculator' role='button'>
-        Submit
-      </Link>
+      </button>
     </form>
       
     </div>
