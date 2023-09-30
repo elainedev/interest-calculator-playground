@@ -1,4 +1,4 @@
-# TypeScript + Vite
+# Bank of Trayt - Compound Interest Calculator
 
 ## Instructions
 1. cd into project directory
@@ -12,6 +12,9 @@
 - prettier and stylelint were installed for formatting.
 
 - React Hook Form is used to create the deposit form.
+
+- Cypress is used for E2E testing of the entire app flow.
+-- run `npm run cypress:open` to start Cypress testing
 
 - The formula to calculate the compounded interest takes into account that the annual interest rate is 5% for the first 36 months and 2% thereafter. It calculates the total compounded interest based on the frequency of the deposits (1 or 2 times a month), the number of days since enrollment (i.e. when user filled out the enrollment form), and the deposit amount. My process to generate the equation via ChatGPT can be seen [here](https://chat.openai.com/c/ffc3906e-cc5a-47e8-910a-c6b14d530ff3)
 
@@ -31,9 +34,9 @@ In my opinion, Material UI's major disadvantage is its deeply nested and complic
 
 ### Things I would do if I had more time
 - Make the page even more responsive by hiding the gray side menu when the viewport shrinks.
-- Implement React Router with the top and side menu.
+- Implement React Router in the top and side menus.
 - Add more user instructions on the deposit form.
-- Add a way to navigate back from the Calculator (3rd page) to the Enrollment Form (2nd page).
+- Add a way to navigate to the previous pages.
 - Instead of only displaying the calendar, also display an input field so users can type in the desired date, for easier usability.
 
 

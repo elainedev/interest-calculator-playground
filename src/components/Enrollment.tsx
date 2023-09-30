@@ -38,8 +38,8 @@ const Enrollment: React.FC = () => {
           placeholder='12345678'
           {...register('accountNumber', {
           required: 'Account number is required.',
-          // minLength: {value: 8, message: 'Account Number must be 8 or more digits.'},
-          // maxLength: {value: 17, message: 'Account Number must be under 17 digits.'},
+          minLength: {value: 8, message: 'Account Number must be 8 or more digits.'},
+          maxLength: {value: 17, message: 'Account Number must be under 17 digits.'},
           pattern: {
             value: /^[0-9]*$/,
             message: 'Account Number must be a number.'
@@ -56,12 +56,12 @@ const Enrollment: React.FC = () => {
           placeholder='123456789'
           {...register('routingNumber', {
             required: 'Routing number is required.',
-            // minLength: {value: 9, message: 'Account Number must be 9 digits.'},
-            // maxLength: {value: 9, message: 'Account Number must be 9 digits.'},
-            // pattern: {
-            //   value: /^(00|0[1-9]|1[0-2]|2[1-9]|3[0-2]|6[1-9]|7[0-2]|80)\d{7}$/,
-            //   message: 'Invalid routing number'
-            // }
+            minLength: {value: 9, message: 'Account Number must be 9 digits.'},
+            maxLength: {value: 9, message: 'Account Number must be 9 digits.'},
+            pattern: {
+              value: /^(00|0[1-9]|1[0-2]|2[1-9]|3[0-2]|6[1-9]|7[0-2]|80)\d{7}$/,
+              message: 'Invalid routing number'
+            }
           })}
         />
         <div className='error-message'>{errors.routingNumber?.message}</div>
@@ -74,6 +74,7 @@ const Enrollment: React.FC = () => {
           render={({ field: { ref, ...rest } }) => {
             return(
             <NumericFormat
+              id="depositAmount"
               placeholder='0.00'
               thousandSeparator=","
               decimalSeparator="."

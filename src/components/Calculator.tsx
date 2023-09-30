@@ -6,6 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { calculateCompoundInterest } from '../formula';
 import './Calculator.scss';
 import '../shared-styles.scss';
+import { start } from 'repl';
 
 const INTEREST_RATE_1: number = 0.05; // first 36 months
 const INTEREST_RATE_2: number = 0.02; // after 36 months
@@ -19,16 +20,21 @@ const Calculator: React.FC = () => {
 
   const { frequency } = enrollmentFormData;
   let { depositAmount } = enrollmentFormData;
-  depositAmount = parseFloat(depositAmount.slice(2));
-  const today = new Date();
-  const [selectedDate, setSelectedDate] = useState<Date>(today);
+  depositAmount = parseFloat(depositAmount.split(' ')[1].replace(/,/g, ''));
+  const [startingDate, setStartingDate] = useState<Date | null>();
+  const [selectedDate, setSelectedDate] = useState<Date | null>();
   const [elapsedDays, setElapsedDays] = useState(0);
   const [totalInterest, setTotalInterest] = useState(0);
 
   useEffect(() => {
-    setElapsedDays((Math.max(0, selectedDate.valueOf() - today.valueOf()))/MILLISECONDS_IN_A_DAY)
+    const today = new Date()
+    const timeDiff = selectedDate ? selectedDate?.valueOf() - today.valueOf() : null;
 
-  }, [selectedDate])
+    if (timeDiff) {
+      setElapsedDays(Math.max(0, timeDiff)/MILLISECONDS_IN_A_DAY)
+    }
+
+  }, [selectedDate, startingDate])
 
   useEffect(() => {
     const first36MonthsInterest: number = calculateCompoundInterest(
@@ -64,15 +70,18 @@ const Calculator: React.FC = () => {
         selected={selectedDate}
         inline
       />
-      <button className='blue-button'>
+      <button className='blue-button' onClick={() => setStartingDate(new Date())}>
         Calculate!
       </button>
-      <p>{`Total interest to be earned on ${selectedDate?.toLocaleDateString('en-US', {
+
+      <div className='date-info'>
+      {selectedDate && <span>{`Total interest to be earned on ${selectedDate?.toLocaleDateString('en-US', {
         month: "long",
         day: "numeric",
         year: "numeric"
         })}:`}
-      </p>
+      </span>}
+      </div>
       <div className='interest-amount'>
         {`$${totalInterest}`}
       </div>
