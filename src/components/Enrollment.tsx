@@ -21,7 +21,7 @@ const Enrollment: React.FC = () => {
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
 
-    navigate('/calculator', {state: {formData: data}});
+    navigate('/interest-calculator/calculator', {state: {formData: data}});
   }
 
   return (

@@ -2,9 +2,10 @@
 
 ## Instructions
 1. git clone into project directory
-2. cd into project directory
+2. `cd` into project directory
 3. run `npm i`
 4. run `npm run dev`
+5. you should be able to access the webpage via the url shown in the terminal (`http://localhost:5173/interest-calculator/`)
 
 ## Implementation Notes
 - This project is set up using vite and TypeScript.

@@ -2,7 +2,7 @@
 
 describe('Enrollment', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:5173/enrollment');
+    cy.visit('http://localhost:5173/interest-calculator/enrollment');
   })
 
   it('should missing input', () => {

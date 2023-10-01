@@ -17,9 +17,9 @@ function App() {
 
         <ContentsContainer>
           <Routes>
-            <Route path="/" element={<Welcome />} />
-            <Route path="/enrollment" element={<Enrollment />} />
-            <Route path="/calculator" element={<Calculator/>} />
+            <Route path="/interest-calculator/" element={<Welcome />} />
+            <Route path="/interest-calculator/enrollment" element={<Enrollment />} />
+            <Route path="/interest-calculator/calculator" element={<Calculator/>} />
           </Routes>
         </ContentsContainer>
       </div>
