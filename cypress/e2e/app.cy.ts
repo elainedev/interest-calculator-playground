@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
-describe('App Flow', () => {
-  it('contains the correct app flow if user enters the information correctly', () => {
+describe('Entire App Flow', () => {
+  it('should contain the correct app flow if user enters the information correctly', () => {
     cy.visit('http://localhost:5173/');
     cy.contains('Welcome to Bank of Trayt').should('be.visible');
     cy.contains('Initiate a new Direct Deposit to earn 5% for 36 months!').should('be.visible');
@@ -55,5 +55,9 @@ describe('App Flow', () => {
 
     cy.get('.interest-amount').contains('$');
   })
+
+  
 })
+
+
 
