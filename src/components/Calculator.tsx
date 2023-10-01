@@ -6,7 +6,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { calculateCompoundInterest } from '../formula';
 import './Calculator.scss';
 import '../shared-styles.scss';
-import { start } from 'repl';
 
 const INTEREST_RATE_1: number = 0.05; // first 36 months
 const INTEREST_RATE_2: number = 0.02; // after 36 months
